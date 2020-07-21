@@ -69,4 +69,9 @@ task ios_tests(type: Test) {
     }
     systemProperty 'platform', 'ios'
 }
-
+task ios_tests(type: Test) {
+    useJUnitPlatform {
+        includeTags 'ios'
+    }
+    systemProperty 'platform', 'ios'
+}
