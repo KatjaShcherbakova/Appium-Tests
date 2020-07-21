@@ -26,6 +26,6 @@ public class EnvironmentHelper {
     public static final String
         iosDevice = System.getProperty("mobile_device", "iPhone 11 Pro Max"),
         iosVersion = System.getProperty("mobile_version", "13.2"),
-        iosBrowserstackApp = System.getProperty("bs_app", "bs://444bd0308813ae0dc236f8cd461c02d3afa7901d");
+        iosBrowserstackApp = System.getProperty("bs_app", "bs://512a764f68e9f855d0a98a552f09741642afb5c4");
 
 }
