@@ -2,27 +2,58 @@ package drivers;
 
 import com.codeborne.selenide.WebDriverProvider;
 import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.ios.IOSDriver;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
 import static helpers.BrowserstackHelper.getBrowserstackUrl;
-import static helpers.EnvironmentHelper.buildNumber;
-import static helpers.EnvironmentHelper.jobBaseName;
+import static helpers.EnvironmentHelper.*;
 
 public class CustomMobileDriver implements WebDriverProvider {
 
     @Override
+
+
+    @Override
     public WebDriver createDriver(DesiredCapabilities capabilities) {
-        capabilities.setCapability("project", "autotests.cloud");
+        if (isAndroid) {
+            return getAndroidDriver();
+        } else if (isIos) {
+            return getIosDriver();
+        } else {
+            return null; // not todo getWindowsPhoneDriver();
+        }
+    }
+
+    private DesiredCapabilities commonCapabilities() {
+        DesiredCapabilities capabilities = new DesiredCapabilities();
+        capabilities.setCapability("project", "Appium_tests");
         capabilities.setCapability("build", jobBaseName);
-        capabilities.setCapability("name", "Tests - Android - " + buildNumber);
+        capabilities.setCapability("name", "Tests - " + platform + " - " + buildNumber);
         capabilities.setCapability("autoGrantPermissions", "true");
 
-        capabilities.setCapability("device", "Google Pixel 3");
-        capabilities.setCapability("os_version", "9.0");
-        capabilities.setCapability("app", "bs://c700ce60cf13ae8ed97705a55b8e022f13c5827c");
+//        capabilities.setCapability("device", "Google Pixel 3");
+//        capabilities.setCapability("os_version", "9.0");
+//        capabilities.setCapability("app", "bs://c700ce60cf13ae8ed97705a55b8e022f13c5827c");
+
+        return new AndroidDriver(getBrowserstackUrl(), capabilities);
+    }
+    public AndroidDriver getAndroidDriver() {
+        DesiredCapabilities capabilities = commonCapabilities();
+        capabilities.setCapability("device", androidDevice);
+        capabilities.setCapability("os_version", androidVersion);
+        capabilities.setCapability("app", androidBrowserstackApp);
 
         return new AndroidDriver(getBrowserstackUrl(), capabilities);
     }
 
+    public IOSDriver getIosDriver() {
+        DesiredCapabilities capabilities = commonCapabilities();
+        capabilities.setCapability("device", iosDevice);
+        capabilities.setCapability("os_version", iosVersion);
+        capabilities.setCapability("autoAcceptAlerts", true);
+        capabilities.setCapability("app", iosBrowserstackApp);
+
+        return new IOSDriver(getBrowserstackUrl(), capabilities);
+    }
 }

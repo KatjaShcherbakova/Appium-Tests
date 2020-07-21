@@ -14,7 +14,7 @@ import static io.qameta.allure.Allure.step;
 @Feature("Selenide-appium Android tests")
 @Story("Search tests")
 @Tag("android")
-class SearchTests extends TestBase {
+class Android_WikiTest extends TestBase {
     @Test
     @DisplayName("Successful search in wikipedia android app")
     void successfulSearch() {
