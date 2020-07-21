@@ -7,7 +7,7 @@ public class EnvironmentHelper {
     public static final String
         bsLogin = System.getProperty("bs_login", ""),
         bsPassword = System.getProperty("bs_password", ""),
-        platform = System.getProperty("platform", "");
+        platform = System.getProperty("platform", "android");
 
 // CI CONFIG (jenkins)
     public static final String
