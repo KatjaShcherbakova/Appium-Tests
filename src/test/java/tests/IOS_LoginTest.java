@@ -20,8 +20,8 @@ public class IOS_LoginTest extends TestBase {
     @DisplayName("Successful login ios test")
     void successfulLogin() {
 
-      private String login = "Katja";
-      private String password = "12345";
+       String login = "Katja";
+       String password = "12345";
 
         step("Go to login page", ()-> {
             open();
