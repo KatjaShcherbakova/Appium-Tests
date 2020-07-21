@@ -21,12 +21,10 @@ class Android_WikiTest extends TestBase {
         step("Open application", ()-> {
             open();
         });
-
         step("Type search", ()-> {
             $(MobileBy.AccessibilityId("Search Wikipedia")).click();
             $(MobileBy.id("org.wikipedia.alpha:id/search_src_text")).sendKeys("BrowserStack");
         });
-
         step("Verify content found", ()-> {
             $$(MobileBy.className("android.widget.TextView"))
                     .shouldHave(CollectionCondition.sizeGreaterThan(0));
