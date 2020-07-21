@@ -12,16 +12,16 @@ import static com.codeborne.selenide.Selenide.*;
 import static helpers.DriverHelper.byTestId;
 import static io.qameta.allure.Allure.step;
 
-
 @Feature("Selenide-appium IOS tests")
 @Story("Login tests")
 @Tag("ios")
-class IOS_LoginTest {
+public class IOS_LoginTest extends TestBase {
     @Test
-    @DisplayName("Successful search in wikipedia android app")
+    @DisplayName("Successful login ios test")
     void successfulLogin() {
-      String login = "Katja";
-      String password = "12345";
+
+      private String login = "Katja";
+      private String password = "12345";
 
         step("Go to login page", ()-> {
             open();
