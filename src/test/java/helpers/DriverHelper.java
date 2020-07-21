@@ -29,6 +29,7 @@ public class DriverHelper {
         } else if (isIos) {
            return MobileBy.id(testId);
        }
+        return null;
     }
 
     public static String getSessionId(){

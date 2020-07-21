@@ -10,10 +10,6 @@ import static helpers.BrowserstackHelper.getBrowserstackUrl;
 import static helpers.EnvironmentHelper.*;
 
 public class CustomMobileDriver implements WebDriverProvider {
-
-    @Override
-
-
     @Override
     public WebDriver createDriver(DesiredCapabilities capabilities) {
         if (isAndroid) {
@@ -21,7 +17,7 @@ public class CustomMobileDriver implements WebDriverProvider {
         } else if (isIos) {
             return getIosDriver();
         } else {
-            return null; // not todo getWindowsPhoneDriver();
+            return null;
         }
     }
 
@@ -32,12 +28,13 @@ public class CustomMobileDriver implements WebDriverProvider {
         capabilities.setCapability("name", "Tests - " + platform + " - " + buildNumber);
         capabilities.setCapability("autoGrantPermissions", "true");
 
-//        capabilities.setCapability("device", "Google Pixel 3");
-//        capabilities.setCapability("os_version", "9.0");
-//        capabilities.setCapability("app", "bs://c700ce60cf13ae8ed97705a55b8e022f13c5827c");
+        capabilities.setCapability("device", "Google Pixel 3");
+        capabilities.setCapability("os_version", "9.0");
+        capabilities.setCapability("app", "bs://c700ce60cf13ae8ed97705a55b8e022f13c5827c");
 
-        return new AndroidDriver(getBrowserstackUrl(), capabilities);
+        return capabilities;
     }
+
     public AndroidDriver getAndroidDriver() {
         DesiredCapabilities capabilities = commonCapabilities();
         capabilities.setCapability("device", androidDevice);

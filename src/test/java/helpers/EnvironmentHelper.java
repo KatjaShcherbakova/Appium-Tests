@@ -13,7 +13,7 @@ public class EnvironmentHelper {
     public static final String
         buildNumber = System.getProperty("build_number", "0"),
         jobBaseName = System.getProperty("job_base_name", "local");
-}
+
 // ANDROID CONFIG
     public static final boolean isAndroid = platform.equals("android");
     public static final String
@@ -28,4 +28,4 @@ public class EnvironmentHelper {
         iosVersion = System.getProperty("mobile_version", "13.2"),
         iosBrowserstackApp = System.getProperty("bs_app", "bs://444bd0308813ae0dc236f8cd461c02d3afa7901d");
 
-
+}
